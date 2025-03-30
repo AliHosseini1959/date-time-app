@@ -9,13 +9,16 @@ function App() {
       setDateTime(new Date());
     }, 1000); // Update every second
 
-    return () => clearInterval(intervalId); // Cleanup on component unmount
+    return () => clearInterval(intervalId); // Cleanup
   }, []);
 
   return (
     <div className="App">
-      <h1>Current Date and Time</h1>
-      <p>{dateTime.toLocaleString()}</p>
+      <h1>📅 Current Date and Time</h1>
+      <p><strong>Local Time:</strong> {dateTime.toLocaleString()}</p>
+      <p><strong>Day:</strong> {dateTime.toLocaleDateString(undefined, { weekday: 'long' })}</p>
+      <p><strong>Timezone:</strong> {Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
+      <p><strong>UTC Time:</strong> {dateTime.toUTCString()}</p>
     </div>
   );
 }
