@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
-const API_KEY = "b4b55cfe3cf67d1b2d109d854aaaeb32"; // 🔹 Replace with your actual API key
+const API_KEY = "adf646d5968c605d34a71788b16668df"; // 🔹 Replace with your actual API key
 
 function App() {
   const [dateTime, setDateTime] = useState(new Date());
