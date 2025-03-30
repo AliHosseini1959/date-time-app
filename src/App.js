@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './App.css';
+import "./App.css";
 
 function App() {
   const [dateTime, setDateTime] = useState(new Date());
@@ -12,13 +12,24 @@ function App() {
     return () => clearInterval(intervalId); // Cleanup
   }, []);
 
+  // Get time-based greeting
+  const getGreeting = () => {
+    const hour = dateTime.getHours();
+    if (hour < 12) return "🌅 Good morning!";
+    if (hour < 18) return "☀️ Good afternoon!";
+    return "🌙 Good evening!";
+  };
+
   return (
-    <div className="App">
-      <h1>📅 Current Date and Time</h1>
-      <p><strong>Local Time:</strong> {dateTime.toLocaleString()}</p>
-      <p><strong>Day:</strong> {dateTime.toLocaleDateString(undefined, { weekday: 'long' })}</p>
-      <p><strong>Timezone:</strong> {Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
-      <p><strong>UTC Time:</strong> {dateTime.toUTCString()}</p>
+    <div className="container">
+      <h1>{getGreeting()}</h1>
+      <div className="time-box">
+        <p><strong>Local Time:</strong> {dateTime.toLocaleTimeString()}</p>
+        <p><strong>Date:</strong> {dateTime.toLocaleDateString()}</p>
+        <p><strong>Day:</strong> {dateTime.toLocaleDateString(undefined, { weekday: "long" })}</p>
+        <p><strong>Timezone:</strong> {Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
+        <p><strong>UTC Time:</strong> {dateTime.toUTCString()}</p>
+      </div>
     </div>
   );
 }
